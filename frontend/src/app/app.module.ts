@@ -12,6 +12,8 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductComponent } from './page/product/product.component';
 import { OrderComponent } from './page/order/order.component';
 import { IconModule } from './icon/icon.module';
+import { DataTableModule } from './data-table/data-table.module';
+import { UserComponent } from './page/user/user.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { IconModule } from './icon/icon.module';
     SidebarComponent,
     HomeComponent,
     ProductComponent,
-    OrderComponent
+    OrderComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    IconModule
+    IconModule,
+    DataTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
