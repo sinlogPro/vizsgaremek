@@ -1,0 +1,26 @@
+[
+    {
+        "first_name": "Charlie",
+        "last_name": "Firpo",
+        "email": "seyden0@merriam-webster.com",
+        "password": "test",
+        "role": "3",
+        "username": "carly"
+    }, 
+    {
+        "first_name": "dfe",
+        "last_name": "Frpo",
+        "email": "seyde@merriam-webster.com",
+        "password": "test",
+        "role": "3",
+        "username": "Killo"
+    }, 
+    {
+        "first_name": "Charlie",
+        "last_name": "Firpo",
+        "email": "seyden0@gmail.com",
+        "password": "test",
+        "role": "1",
+        "username": "Gikl"
+    }
+]
