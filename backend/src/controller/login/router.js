@@ -45,18 +45,20 @@ router.post('/', async (req, res, next) => {
             _id: user._id,
             username: user.username,
             role: user.role,
-        },  process.env.JWT_SIGN_KEY, {
-            expiresIn: '1h',
+        },  process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: process.env.TOKEN_EXPIRY,
         });
 
-        console.log(isMatch);
+        // console.log(isMatch);
         if (isMatch){
+            // ha jó a jelszó, akkor ezt küldi a server
             res.json({ 
                 success: true, 
                 accessToken, 
                 user: {...user._doc, password: ''},
             });
         } else {
+            // ha nem jó a jelszó, akkor ezt küldi a szerver
             res.json({succes: false})
         }
 
