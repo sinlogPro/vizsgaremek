@@ -4,6 +4,25 @@ const baseService = require('../base/service');
 module.exports = (model) => {
     const service = baseService(model);
     return {
+
+
+        create(req, res, next) {
+            // const validationErrors = new Model(req.body).validateSync();
+            // if (validationErrors) {
+            //     return next(
+            //         new createError.BadRequest(validationErrors)
+            //     );
+            // }
+        
+            return service.create(req.body)
+                .then(cp => {
+                    res.status(201);
+                    res.json(cp);
+                })
+//                .catch(err => next(new createError.InternalServerError(err.message)));
+        },
+         
+
         findAll(req, res, next) {
             return service.findAll()
                 .then(list => res.json(list));

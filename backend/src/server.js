@@ -5,7 +5,7 @@ const logger = require('./module/logger');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise; // már nem szükséges a használata
 
 const cors = require('cors');
 
@@ -47,11 +47,14 @@ app.use(cors());
 // Body parser
 app.use(bodyParser.json());
 
-
 app.use(express.static('public'));
 
+const authencticateJwt = require('./model/auth/authenticate');
 
-app.use('/product', require('./controller/product/router'))
+// router
+app.use('/login', require('./controller/login/router'));
+app.use('/user', require('./controller/user/router'))
+app.use('/product', authencticateJwt, require('./controller/product/router'));
 
 // app.use((req, res, next) => {
 //     res.send(`<h1>Hello from Express!</h1>`);

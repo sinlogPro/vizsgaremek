@@ -2,7 +2,7 @@ const { readFile } = require('fs').promises
 const { join } = require('path')
 
 // data files to be seeded:
-const modelName = ['product'];
+const modelName = ['user'];
 
 (async () => {
   modelName.forEach(async (model) => {

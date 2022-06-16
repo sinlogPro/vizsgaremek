@@ -1,16 +1,19 @@
 const express = require('express');
-const User = require('../../model/user');
+const User = require('../../model/user.model');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
 // post
 router.post('/', async (req, res, next) => {
+        
     // const newUser = new User({
     //     email: 'test@test.hu',
-    //     lastName: 'Elek',
-    //     firstName: 'Test',
-    //     password: 'test789',
+    //     last_name: 'Elek',
+    //     first_name: 'Test',
+    //     password: 'test',
+    //     username: 'test3',
+    //     role: 5, 
     // });
 
     // try {
@@ -22,8 +25,12 @@ router.post('/', async (req, res, next) => {
 
     // return res.json({message: 'user created'});
 
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    
+    // console.log(user);
+    // console.log(process.env.JWT_SIGN_KEY);
 
     if (!user) {
         return res.sendStatus(401);
@@ -36,29 +43,37 @@ router.post('/', async (req, res, next) => {
 
         const accessToken = jwt.sign({
             _id: user._id,
-            email: user.email,
-            role: 1,
-        }, 'egynagyontitkosszöveg', {
+            username: user.username,
+            role: user.role,
+        },  process.env.JWT_SIGN_KEY, {
             expiresIn: '1h',
         });
 
-        res.json({ 
-            success: true, 
-            accessToken, 
-            user: {...user._doc, password: ''},
-        });
+        console.log(isMatch);
+        if (isMatch){
+            res.json({ 
+                success: true, 
+                accessToken, 
+                user: {...user._doc, password: ''},
+            });
+        } else {
+            res.json({succes: false})
+        }
+
     });
 });
 
 module.exports = router;
 
 /*
+
 fetch('http://localhost:3000/login', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: '{"email": "test@test.hu", "password": "test789"}',
+method: 'POST',
+headers: {
+    'Content-Type': 'application/json'
+},
+body: '{"username": "test3", "password": "test"}',
 }).then(r => r.json())
     .then( d => console.log(d) );
+
 */

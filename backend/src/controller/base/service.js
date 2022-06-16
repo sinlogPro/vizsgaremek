@@ -8,11 +8,19 @@ module.exports = (model) => {
             if (!error) {
                 return model.findByIdAndUpdate(id, updateData, {new: true});
             } 
-            throw new Error('Model is not valid!')
+            throw new Error('Update | Model is not valid!')
         },
         create: (data) => {
-			const newEntity = new model((data));
-			return newEntity.save();
+            // return newEntity.save();
+            // const newEntity = new model(data);
+            
+            const newEntity = new model(data);
+            const error = newEntity.validateSync();
+            if (!error) {
+                return newEntity.save();
+            } 
+            throw new Error('Create | Model is not valid!')
+
 		},
         delete: async (id) => {
 			const removedEntity = await model.findByIdAndRemove(id);

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const idValidator = require('mongoose-id-validator');
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 10;
 
@@ -6,9 +7,9 @@ const UserSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        index: {
-            unique: true,
-        },
+        // index: {
+        //     unique: true,
+        // },
     },
     last_name: String,
     first_name: String,
@@ -17,13 +18,18 @@ const UserSchema = mongoose.Schema({
         required: true,
     },
     role: {
-		type: Number,
-		required: true
-	},
-	username: {
-		type: String,
-		required: true
-	},
+        type: Number,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true,
+        index: {
+            unique: true,
+        },
+    },
+}, {
+    timestamps: true,
 });
 
 UserSchema.pre('save', function(next) {
@@ -57,5 +63,7 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
+
+// UserSchema.plugin(idValidator);
 
 module.exports = mongoose.model('User', UserSchema);

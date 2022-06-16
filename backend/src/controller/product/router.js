@@ -6,7 +6,7 @@ const router = express.Router();
 
 // get
 router.get('/', (req, res, next) => {
-    // console.log('get works');
+    console.log('product get works');
     return controller.findAll(req, res, next);
 });
 
@@ -14,6 +14,11 @@ router.get('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     console.log('getOne works');
     return controller.findOne(req, res, next);
+});
+
+// patch - update
+router.patch('/:id', (req, res, next) => {
+    return controller.updateOne(req, res, next);
 });
 
 
