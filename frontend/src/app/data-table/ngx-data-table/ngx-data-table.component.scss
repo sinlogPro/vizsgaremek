@@ -1,0 +1,31 @@
+$blue: #0d6efd;
+$blue-bover: #a8bcd9;
+$grey: #e9ecef;
+
+
+.page-width {
+  min-width: 42px;
+}
+
+.table__title {
+  user-select: none
+}
+
+
+.table__arrow {
+  height: 0rem;
+  color: $blue;
+}
+
+
+.page-arrow[disabled] {
+  background-color: $grey;
+
+  &:hover {
+    background-color: $grey;
+  }
+  &>.table__arrow {
+    color: $blue-bover;
+  }
+}
+

@@ -11,7 +11,7 @@ import { Product } from 'src/app/model/product';
 })
 export class ProductComponent implements OnInit {
 
-  columns = this.config.productTableColumns;
+  tableColumns = this.config.productTableColumns;
 
   // list$: Observable<Product[]> = this.productService.getAll();
   list$ = this.productService.getAll();
@@ -21,7 +21,6 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

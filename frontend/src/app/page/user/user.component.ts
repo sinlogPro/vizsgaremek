@@ -9,7 +9,7 @@ import { ConfigService } from 'src/app/service/config.service';
 })
 export class UserComponent implements OnInit {
 
-  columns = this.config.userTableColumns;
+  tableColumns = this.config.userTableColumns;
 
   list$ = this.userService.getAll();
 
@@ -19,6 +19,7 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
   }
 
 }

@@ -1,0 +1,208 @@
+<p>customer-edit works!</p>
+<!-- <pre>
+  {{ customer$ | async | json }}
+  {{ customer$ | async | json | spread }}
+
+</pre>
+{{ customer$ | async | json }}
+address: {{ customerAddress._id | json }} -->
+
+<!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> -->
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2 text-primary">Ügyfél adatainak szerkesztése</h1>
+  <!-- <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">
+      <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+      <span data-feather="calendar" class="align-text-bottom"></span>
+      This week
+    </button>
+  </div> -->
+</div>
+
+<!-- <h3 class="text-primary">Ügyfél adatainak szerkesztése</h3>
+<br> -->
+
+
+<form
+  *ngIf="customer$ | async  as customer"
+  #editForm="ngForm"
+  (ngSubmit)="onUpdate(editForm)"
+  >
+
+  <!-- customer -->
+  <div class = "pt-3 pb-4 mb-4 border-bottom">
+    <h4 class="text-primary">Ügyféladatok</h4>
+    <div class="container d-flex flex-column flex-lg-row align-content-around justify-content-around flex-wrap">
+
+      <input name="_id" type="hidden" [(ngModel)]="customer._id">
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3 mt-lg-0">
+        <label>Név</label>
+        <input
+          name="name"
+          [(ngModel)]="customer.name"
+          type="text"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3 mt-lg-0">
+        <label>Email cím</label>
+        <input
+          name="email"
+          [(ngModel)]="customer.email"
+          type="email"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Telefonszám</label>
+        <input
+          name="phoneNumber"
+          [(ngModel)]="customer.phoneNumber"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Webcím</label>
+        <input
+          name="url"
+          [(ngModel)]="customer.url"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+    </div>
+  </div>
+
+  <!-- address -->
+
+
+  <div class = "pt-3 pb-4 mb-4 border-bottom">
+    <h4 class="text-primary">Címadatok</h4>
+    <div class="container d-flex flex-column flex-lg-row align-content-around justify-content-around flex-wrap">
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3 mt-lg-0">
+        <label>Ország</label>
+        <input
+          name="country"
+          [(ngModel)]="customerAddress.country"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group  col-12 col-lg-6 px-md-4 mt-3 mt-lg-0">
+        <label>Állam / Megye</label>
+        <input
+          name="state"
+          [(ngModel)]="customerAddress.state"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Irányítószám</label>
+        <input
+          name="zipcode"
+          [(ngModel)]="customerAddress.zipcode"
+          type="number"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Város / Település</label>
+        <input
+          name="city"
+          [(ngModel)]="customerAddress.city"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Utca, közterület neve</label>
+        <input
+          name="streetName"
+          [(ngModel)]="customerAddress.streetName"
+          type="string"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group col-12 col-lg-6 px-md-4 mt-3">
+        <label>Házszám</label>
+        <input
+          name="streetNumber"
+          [(ngModel)]="customerAddress.streetNumber"
+          type="string"
+          class="form-control"
+          >
+        </div>
+
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" type="button" (click)="goBack()"> Visszalépés nemtés nélkül </button>
+      <button class="btn btn-primary" type="submit"> Mentés </button>
+    </div>
+    <!-- {{ #editForm | json }} -->
+
+    <!-- <button type="submit" class="btn btn-primary mt-4"> Update </button> -->
+    <!-- <button type="button" class="btn btn-primary mt-4" (click)="click()"> Reset </button>
+    <button type="button" class="btn btn-primary mt-4" (onclick)="onRefresh()"> Reload </button> -->
+
+    <!-- {{ customer | json }}
+    {{ customerAddress | json }} -->
+
+
+
+
+
+
+    <!-- TypeHead -->
+
+
+    <!-- <div class="form-group">
+      <label>Address</label>
+      {{suggestions$ | async | json}}
+      <input
+      name="address"
+      [(ngModel)]="customer.address"
+      typeaheadOptionField="country"
+      [typeahead]="suggestions$"
+      [typeaheadAsync]="true"
+      [optionsListTemplate]="customListTemplate"
+      class="form-control"
+      placeholder="choose a address"
+      (ngModelChange)="changeName($event)"
+      >
+    </div> -->
+
+
+
+
+  </form>
+
+  <!-- <ng-template #customListTemplate let-matches="matches" let-query="query" let-typeaheadTemplateMethods>
+    <ul class="custom-list-group" [class.dropdown-menu]="isBs3">
+      <li class="custom-list-group-item"
+      *ngFor="let match of matches"
+      [class.active]="typeaheadTemplateMethods.isActive(match)"
+      (click)="typeaheadTemplateMethods.selectMatch(match, $event); selectAddress(match)"
+      (mouseenter)="typeaheadTemplateMethods.selectActive(match)">
+      {{ match.item.country }}
+    </li>
+  </ul>
+</ng-template> -->
+
