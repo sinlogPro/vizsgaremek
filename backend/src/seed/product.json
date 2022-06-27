@@ -1,20 +1,83 @@
 [
     {
-        "name": "Joe",
-        "description": "Firpo",
-        "price": 10012458854,
-        "active": false
+        "name": "Kapa",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
     },
     {
-        "name": "Jack",
-        "description": "Firpo",
-        "price": 3232323,
-        "active": true
+        "name": "Zokni",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 10,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa6fcef2278f9694126fc1",
+        "customer": "62b42234e7a3ef250ac7a65a"
     },
     {
-        "name": "Jill",
-        "description": "Firpo",
-        "price": 5614561546,
-        "active": true
+        "name": "Lapát",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
+    },
+    {
+        "name": "Létra",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 67",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
+    },
+    {
+        "name": "Vödör",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
+    },
+    {
+        "name": "Kompresszor",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
+    },
+    {
+        "name": "Fésű",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
+    },
+    {
+        "name": "Ecset",
+        "category": "62b93579103665ba8876ae10",
+        "description": "leírás 2",
+        "price": 100,
+        "amount": 21,
+        "active": false,
+        "registrated": "62aa9f79d247c692e049ba2c",
+        "customer": "62b42234e7a3ef250ac7a65a"
     }
+    
 ]

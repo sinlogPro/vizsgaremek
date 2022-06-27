@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Weissnat Group",
+        "email": "bbrotherheed0@jugem.jp",
+        "phoneNumber": "+45 (800) 846-3190",
+        "url": "http://usnews.com",
+        "address": {
+            "country": "Canada",
+            "zipcode": 5939,
+            "state": "British Columbia",
+            "streetName": "Susan",
+            "streetNumber": "49",
+            "city": "Pemberton"
+        }
+    },
+    {
+        "name": "Grimes and Sons",
+        "email": "lfrancesco1@toplist.cz",
+        "phoneNumber": "+1 (252) 124-6409",
+        "url": "https://liveinternet.ru",
+        "address": {
+            "country": "Lithuania",
+            "zipcode": 3756,
+            "state": null,
+            "streetName": "Lakewood",
+            "streetNumber": "41643",
+            "city": "Dūkštas"
+        }
+    },
+    {
+        "name": "Pouros, Kuvalis and King",
+        "email": "klashford2@netlog.com",
+        "phoneNumber": "+86 (478) 307-9118",
+        "url": "https://ehow.com",
+        "address": {
+            "country": "Russia",
+            "zipcode": 6199,
+            "state": null,
+            "streetName": "Maywood",
+            "streetNumber": "4398",
+            "city": "Komsomol’skiy"
+        }
+    },
+    {
+        "name": "Hammes-Barrows",
+        "email": "bllop3@live.com",
+        "phoneNumber": "+963 (460) 821-1668",
+        "url": "https://statcounter.com",
+        "address": {
+            "country": "Palestinian Territory",
+            "zipcode": 2385,
+            "state": null,
+            "streetName": "Anniversary",
+            "streetNumber": "231",
+            "city": "Jūrat ash Sham‘ah"
+        }
+    }
+]

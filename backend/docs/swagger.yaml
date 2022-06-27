@@ -1,0 +1,732 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Vizsgaremek Szerver API Dokumentáció
+  description: A Vizsgaremek végpontjainek részeletes leírása és használata
+servers:
+  - url: http://localhost:3115
+paths:
+  
+  /user:
+    get:
+      description: Returns a list of users
+      security:
+        - bearerAuth: []      
+      responses:
+        "200":
+          description: List of users returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      description: Creates a new user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "201":
+          description: User has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /user/search:
+    get:
+      description: Returns the list of searched users
+      security:
+        - bearerAuth: []      
+      parameters: 
+        - name: username
+          in: query
+          schema:
+            type: string
+          example: 'ahuske2'
+        - name: last_name
+          in: query
+          schema:
+            type: string
+          example: 'Huske'
+        - name: first_name
+          in: query
+          schema:
+            type: string            
+          example: 'Ameline'
+        - name: email
+          in: query
+          schema:
+            type: string
+          example: 'ahuske2@uiuc.edu'
+        - name: role
+          in: query
+          schema:
+            type: number
+          example: 5
+      responses:
+        "200":
+          description: List of users returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /user/{_id}:
+    get:
+      description: Get one user
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          example: "62afe4aab6513601bc8660f4"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns a user
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Requested user doesn't exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      description: Updates a user
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: User has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      description: Removes a user
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /address:
+    get:
+      description: Returns a list of addresses
+      security:
+        - bearerAuth: []      
+      responses:
+        "200":
+          description: List of addresses returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Address"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      description: Creates a new address
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Address"
+      responses:
+        "201":
+          description: Address has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Address"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /address/search:
+    get:
+      description: Returns the list of searched addresses
+      security:
+        - bearerAuth: []      
+      parameters: 
+        - name: country
+          in: query
+          schema:
+            type: string
+          example: 'Indonesia'
+        - name: zipcode
+          in: query
+          schema:
+            type: number
+        - name: city
+          in: query
+          schema:
+            type: string            
+        - name: state
+          in: query
+          schema:
+            type: string
+        - name: streetName
+          in: query
+          schema:
+            type: string
+        - name: streetNumber
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of addresses returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Address"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"              
+  /address/{_id}:
+    get:
+      description: Get one address
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          example: "62b42277c0499709e35c79f9"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns an address
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Requested address doesn't exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      description: Updates an address
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Address"
+      responses:
+        "200":
+          description: Address has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Address"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      description: Removes an address
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Address has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"                
+  /customer:
+    get:
+      description: Returns a list of customers
+      security:
+        - bearerAuth: []      
+      responses:
+        "200":
+          description: List of customers returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      description: Creates a new customer
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "201":
+          description: Customer has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /customer/{_id}:
+    get:
+      description: Get one customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          example: "62b42234e7a3ef250ac7a6f8"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns a customer
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Customer"
+        "404":
+          description: Requested customer doesn't exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      description: Updates a customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+      responses:
+        "200":
+          description: Customer has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      description: Removes a customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customer has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error" 
+  /category:
+    get:
+      description: Returns a list of category
+      security:
+        - bearerAuth: []      
+      responses:
+        "200":
+          description: List of category returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      description: Creates a new category
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+      responses:
+        "201":
+          description: Category has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /category/search:
+    get:
+      description: Returns the list of searched category
+      security:
+        - bearerAuth: []      
+      parameters: 
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: 'category_1'
+        - name: description
+          in: query
+          schema:
+            type: string
+          example: 'exercit'        
+      responses:
+        "200":
+          description: List of category returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"              
+  /category/{_id}:
+    get:
+      description: Get one category
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          example: "62b93579103665ba8876ae15"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns a category
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Category"
+        "404":
+          description: Requested category doesn't exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      description: Updates a category
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+      responses:
+        "200":
+          description: Category has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      description: Removes a category
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Category has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"                              
+  
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      required:  
+       - username
+       - last_name      
+       - first_name      
+       - email
+       - role
+      properties:
+        username:
+          type: string
+        last_name:
+          type: string
+        first_name:
+          type: string
+        email:
+          type: string
+        role:
+          type: number
+          default: 1        
+    Address:
+      type: object
+      required:
+        - country
+        - zipcode
+        - city
+      properties:
+        country:
+          type: string
+        zipcode:
+          type: number
+        city:
+          type: string
+        state:
+          type: string
+        streetName:
+          type: string
+        streetNumber:
+          type: string
+    Customer:
+      type: object
+      required:  
+        - name
+        - email      
+        - phoneNumber      
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        url:
+          type: string
+        address:
+          # type: object
+          $ref: '#/components/schemas/Address'      
+    Category:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Product:
+      type: object
+      required:
+        - name
+        - category
+        - description
+        - price
+        - amount
+        - active        
+      properties:
+        name:
+          type: string
+        category:
+          $ref: '#/components/schemas/Category'
+        description:
+          type: string
+        price:
+          type: number
+        amount:
+          type: number
+        active:
+          type: boolean
+        registrated:
+          $ref: '#/components/schemas/User'
+        customer:
+          $ref: '#/components/schemas/Customer'
+    Error:
+      type: object
+      required:
+        - message
+        - has_error
+      properties:
+        message:
+          type: string
+        has_error:
+          type: boolean

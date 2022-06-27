@@ -1,0 +1,14 @@
+version: "3"
+services:
+    app:
+        container_name: leltar_app
+        build:
+            dockerfile: Dockerfile
+            context: .
+        volumes:
+          - .:/app
+          - ./node_modules:/app/node_modules
+          - ../frontend/dist/vizsgaremek/:/app/public
+        ports:
+          - 3115:3115
+            

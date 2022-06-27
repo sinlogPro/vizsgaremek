@@ -1,6 +1,6 @@
-const express = require('express');
-const Product = require('../../model/product.model');
-const controller = require('../base/controller')(Product, ['category', 'registrated', 'customer']);
+const express = require("express");
+const Category = require('../../model/category.model');
+const controller = require('../base/controller')(Category, []);
 
 const router = express.Router();
 
@@ -36,16 +36,4 @@ router.delete('/:id', (req, res, next) => {
   return controller.delete(req, res, next);
 });
 
-
 module.exports = router;
-
-/*
-fetch('http://localhost:3000/product', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${temp1.accessToken}`
-    },
-}).then(r => r.json())
-    .then( d => console.log(d) );
-*/

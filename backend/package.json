@@ -1,26 +1,37 @@
 {
-  "name": "backend",
+  "name": "leltar_backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js"
+    "test": "jest",
+    "start": "node ./src/index.js",
+    "server": "nodemon ./src/index.js",
+    "deploy": "cd ../frontend && ng build && cd ../backend && docker-compose up"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    
     "body-parser": "^1.20.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "http-errors": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.8",
+    "mongoose-bcrypt": "^1.9.0",
     "mongoose-id-validator": "^0.6.0",
     "morgan": "^1.10.0",
-    "winston": "^3.7.2"
+    "swagger-ui-express": "^4.4.0",
+    "supertest": "^6.2.3",
+    "winston": "^3.7.2",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^28.1.0",
+    "jest-mock-req-res": "^1.0.2"
   }
 }

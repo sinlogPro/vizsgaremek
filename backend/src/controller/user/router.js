@@ -4,38 +4,46 @@ const controller = require('../base/controller')(User);
 
 const router = express.Router();
 
-// get
-router.get('/', (req, res, next) => {
-    return controller.findAll(req, res, next);
-});
-
-// get one
-router.get('/:id', (req, res, next) => {
-    console.log('getOne works');
-    return controller.findOne(req, res, next);
-});
-
 // create
 router.post('/', async (req, res, next) => {
     const { username } = req.body;
-    console.log({username});
-
+    // console.log({username});
 
     const user = await User.findOne({ username });
 
     console.log(user);
     if (user) {
-        console.log('username | van már ilyen user bejedzés');
+        // console.log('username | van már ilyen user bejedzés');
         return res.sendStatus(401);
     }
 
-    // return null
     return controller.create(req, res, next);
   });
+
+// search
+router.get('/search', (req, res, next) => {
+  return controller.search(req, res, next);
+});
+
+// get
+router.get('/', (req, res, next) => {
+  return controller.findAll(req, res, next);
+});
+
+// get one
+router.get('/:id', (req, res, next) => {
+  console.log('getOne works');
+  return controller.findOne(req, res, next);
+});
 
 // patch - update
 router.patch('/:id', (req, res, next) => {
     return controller.updateOne(req, res, next);
+});
+
+// delete
+router.delete('/:id', (req, res, next) => {
+  return controller.delete(req, res, next);
 });
 
 

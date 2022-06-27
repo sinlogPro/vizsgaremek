@@ -5,24 +5,25 @@ const logger = require('./module/logger');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-// mongoose.Promise = global.Promise; // már nem szükséges a használata
 
 const cors = require('cors');
+
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./docs/swagger.yaml');
 
 const app = express();
 
 
 const { host, user, pass, database } = config.get('database');
 
-console.log({ host, user, pass });
-
-// "host": "vizsgaremek.8x1iy.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(`mongodb+srv://${user}:${pass}@${host}/${database}?retryWrites=true&w=majority`, {
     useNewUrlparser: true,
     useUnifiedTopology: true,
 }).then(
-    // require('./seed/seeder'), // Seed the database, ONLY ONCE MUST RUN
+    // require('./seed/seeder'), // Seeder - csak egyszer szabad futtatni
+    // require('./seed/databaseconfig'), // Összetett objektumok szétszedése két kollekcióba
     () => {
     logger.info(`Mongodb connected to host ${host}/${database}`)
 }).catch((err) => {
@@ -30,13 +31,6 @@ mongoose.connect(`mongodb+srv://${user}:${pass}@${host}/${database}?retryWrites=
     process.exit();
 });
 
-// mongoose.connect(`mongodb+srv://${host}`, { user, pass})
-//     .then(
-//         // require('./seed/seeder'), // Seed the database, ONLY ONCE MUST RUN
-//         conn => console.log('Connection success!'))
-//     .catch(err => {
-//         throw new Error(err.message);
-//     });
 
 // logger
 app.use(morgan('combined', { stream: logger.stream }));
@@ -53,12 +47,27 @@ const authencticateJwt = require('./model/auth/authenticate');
 
 // router
 app.use('/login', require('./controller/login/router'));
-app.use('/user', require('./controller/user/router'))
-app.use('/product', authencticateJwt, require('./controller/product/router'));
 
-// app.use((req, res, next) => {
-//     res.send(`<h1>Hello from Express!</h1>`);
-// });
+// A tesztek lefuttathatósága miatt nem lehet authentikáció.
+// Az API éles használatakor az 53-57 sor ki kell kommentelni.
+// És a 61-65 sortokat pedig kivenni a kikommentelésből.
+app.use('/address', require('./controller/address/router'));
+app.use('/customer', require('./controller/customer/router'))
+app.use('/user', require('./controller/user/router'))
+app.use('/category', require('./controller/category/router'));
+app.use('/product', require('./controller/product/router'));
+
+// -- authencticate -- 
+//app.use('/address', authencticateJwt, require('./controller/address/router'));
+// app.use('/customer', authencticateJwt, require('./controller/customer/router'))
+// app.use('/user', authencticateJwt, require('./controller/user/router'))
+// app.use('/category', authencticateJwt, require('./controller/category/router'))
+// app.use('/product', authencticateJwt, require('./controller/product/router'));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+// Atlasz adatbázis változtatásához - idegen kulcsok csatlakoztatása
+// app.use('/mode', require('./controller/mode/router'))
 
 
 app.use((err, req, res, next) => {
