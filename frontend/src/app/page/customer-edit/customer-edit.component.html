@@ -1,30 +1,6 @@
-<p>customer-edit works!</p>
-<!-- <pre>
-  {{ customer$ | async | json }}
-  {{ customer$ | async | json | spread }}
-
-</pre>
-{{ customer$ | async | json }}
-address: {{ customerAddress._id | json }} -->
-
-<!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> -->
 <div class="pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2 text-primary">Ügyfél adatainak szerkesztése</h1>
-  <!-- <div class="btn-toolbar mb-2 mb-md-0">
-    <div class="btn-group me-2">
-      <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-    </div>
-    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-      <span data-feather="calendar" class="align-text-bottom"></span>
-      This week
-    </button>
-  </div> -->
 </div>
-
-<!-- <h3 class="text-primary">Ügyfél adatainak szerkesztése</h3>
-<br> -->
-
 
 <form
   *ngIf="customer$ | async  as customer"
@@ -82,8 +58,8 @@ address: {{ customerAddress._id | json }} -->
     </div>
   </div>
 
-  <!-- address -->
 
+  <!-- address -->
 
   <div class = "pt-3 pb-4 mb-4 border-bottom">
     <h4 class="text-primary">Címadatok</h4>
@@ -153,9 +129,13 @@ address: {{ customerAddress._id | json }} -->
     </div>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary me-md-2" type="button" (click)="goBack()"> Visszalépés nemtés nélkül </button>
-      <button class="btn btn-primary" type="submit"> Mentés </button>
+      <button class="btn btn-primary me-md-2" type="button" (click)="goBack()"><i class="fa fa-undo" aria-hidden="true"></i>
+        Visszalépés nemtés nélkül </button>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Mentés </button>
     </div>
+
+
+
     <!-- {{ #editForm | json }} -->
 
     <!-- <button type="submit" class="btn btn-primary mt-4"> Update </button> -->

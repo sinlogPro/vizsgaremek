@@ -1,11 +1,11 @@
-<p>customer works!</p>
-<!-- {{ list$ | async }} -->
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2 text-primary">Ügyfelek listája</h1>
+</div>
 
-
-<h2>Customer List</h2>
 <ngx-data-table
   *ngIf="list$ | async as list "
   [tableColumns]="tableColumns"
   [list]="list"
   (onEdit)="startEdit($event)"
+  (onDelete)="startDelete($event)"
 ></ngx-data-table>

@@ -8,6 +8,9 @@ import { UserComponent } from './page/user/user.component';
 import { LoginComponent } from './page/login/login.component';
 import { CustomerComponent } from './page/customer/customer.component';
 import { CustomerEditComponent } from './page/customer-edit/customer-edit.component';
+import { CategoryComponent } from './page/category/category.component';
+import { CategoryEditComponent } from './page/category-edit/category-edit.component';
+import { UserEditComponent } from './page/user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -27,6 +30,10 @@ const routes: Routes = [
     component: UserComponent,
   },
   {
+    path: 'user/edit/:id',
+    component: UserEditComponent,
+  },
+  {
     path: 'customer',
     component: CustomerComponent,
   },
@@ -34,6 +41,15 @@ const routes: Routes = [
     path: 'customer/edit/:id',
     component: CustomerEditComponent,
   },
+  {
+    path: 'category',
+    component: CategoryComponent,
+  },
+  {
+    path: 'category/edit/:id',
+    component: CategoryEditComponent,
+  },
+
   {
     path: 'login',
     component: LoginComponent,

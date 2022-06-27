@@ -34,13 +34,6 @@ export class CustomerEditComponent implements OnInit {
 
   suggestions$: Observable<Address[]> = of([]);
 
-  // suggestions$: Observable<any[]> = of([
-  //   {country: "China", _id: "ksdjflksafjsdf"},
-  //   {country: "Chinas", _id: "ksdjflk56465465safjsdf"},
-  //   {country: "Chas", _id: "k54654654sdjflksafjsdf"},
-  // ]);
-
-
   customerAddress: any = '';  // ide megy a customer.address belső objektuma
 
   constructor(

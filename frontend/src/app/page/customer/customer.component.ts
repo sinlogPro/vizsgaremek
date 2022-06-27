@@ -31,8 +31,17 @@ export class CustomerComponent implements OnInit {
   }
 
   startEdit(customer: Customer): void {
-    console.log(customer._id);
     this.router.navigate(['/', 'customer', 'edit', customer._id]);
+  }
+
+  startDelete(customer: Customer): void {
+    console.log(customer._id);
+    if (!confirm('Biztos vagy benne?')) {
+      return
+    }
+    this.customerService.delete(customer).subscribe(() => {
+       this.list$ = this.customerService.getAll();
+    });
   }
 
 }

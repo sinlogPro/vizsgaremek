@@ -1,0 +1,89 @@
+<div class="pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2 text-primary">Felhasználó adatainak szerkesztése</h1>
+</div>
+
+
+<form
+  *ngIf="user$ | async  as user"
+  #editForm="ngForm"
+  (ngSubmit)="onUpdate(editForm)"
+  >
+
+  <div class = "pt-3 pb-4 mb-4 border-bottom">
+    <h4 class="text-primary">Felhasználói adatok</h4>
+    <div class="container d-flex flex-column">
+
+      <input name="_id" type="hidden" [(ngModel)]="user._id">
+
+      <div class="form-group">
+        <label>Felhasználónév</label>
+        <input
+          name="username"
+          [(ngModel)]="user.username"
+          type="text"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Vezetéknév</label>
+        <input
+          name="last_name"
+          [(ngModel)]="user.last_name"
+          type="email"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Keresztnév</label>
+        <input
+          name="last_name"
+          [(ngModel)]="user.first_name"
+          type="email"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Email cím</label>
+        <input
+          name="email"
+          [(ngModel)]="user.email"
+          type="email"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Jelszó</label>
+        <input
+          name="password"
+          [(ngModel)]="user.password"
+          type="password"
+          class="form-control"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Jogosultsági szint</label>
+        <input
+          name="role"
+          [(ngModel)]="user.role"
+          type="number"
+          class="form-control"
+        >
+      </div>
+
+
+    </div>
+  </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button class="btn btn-primary me-md-2" type="button" (click)="goBack()"><i class="fa fa-undo" aria-hidden="true"></i>
+        Visszalépés nemtés nélkül </button>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Mentés </button>
+    </div>
+
+  </form>
+

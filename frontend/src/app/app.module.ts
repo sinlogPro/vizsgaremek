@@ -26,6 +26,10 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { CustomerEditComponent } from './page/customer-edit/customer-edit.component';
 import { SpreadPipe } from './pipe/spread.pipe';
+import { CategoryComponent } from './page/category/category.component';
+import { CategoryEditComponent } from './page/category-edit/category-edit.component';
+import { UserEditComponent } from './page/user-edit/user-edit.component';
+import { ProductEditComponent } from './page/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { SpreadPipe } from './pipe/spread.pipe';
     CustomerComponent,
     CustomerEditComponent,
     SpreadPipe,
+    CategoryComponent,
+    CategoryEditComponent,
+    UserEditComponent,
+    ProductEditComponent,
     // FilterPipe,
     // SorterPipe,
   ],

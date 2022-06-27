@@ -27,14 +27,15 @@ export class NgxDataTableComponent<T extends { [x: string]: any }> implements On
 
   @Output() onEdit: EventEmitter<T> = new EventEmitter;
 
+  @Output() onDelete: EventEmitter<T> = new EventEmitter;
 
   // @Input() filterKey: string = '';
 
-  pageSize: number = 5;
+  pageSize: number = 10;
 
   startSlice: number = 0;
 
-  endSlice: number = 5;
+  endSlice: number = 10;
 
   page: number = 1;
 
@@ -178,10 +179,12 @@ export class NgxDataTableComponent<T extends { [x: string]: any }> implements On
     this.onEdit.emit(entity);
   }
 
+  raiseDelete(entity: T): void {
+    this.onDelete.emit(entity);
+  }
 
   searchEvent(event: Event): void {
     this.phrase = (event.target as HTMLInputElement).value;
-
   }
 
 }

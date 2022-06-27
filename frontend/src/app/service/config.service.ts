@@ -14,30 +14,22 @@ export interface IMenuItem {
 export class ConfigService {
 
   sidebarMenu: IMenuItem[] = [
-    {link: '/', title: 'Dashboard', icon: 'home'},
-    {link: '/user', title: 'User', icon: 'users'},
-    {link: '/customer', title: 'Customers', icon: 'truck'},
-    {link: '/product', title: 'Products', icon: 'archive'},
-    {link: '/order', title: 'Order', icon: 'edit2'}
+    {link: '/', title: 'Nyítólap', icon: 'home'},
+    {link: '/user', title: 'Felhasználók', icon: 'users'},
+    {link: '/customer', title: 'Ügyfelek', icon: 'truck'},
+    {link: '/product', title: 'Termékek', icon: 'archive'},
+    {link: '/category', title: 'Termékkategóriák', icon: 'edit2'}
     // {link: '/k', title: 'Order', icon: 'edit2'}
   ];
 
-  productTableColumns: INgxTableColumn[] = [
-    {key: '_id', title: '#'},
-    {key: 'name', title: 'Name'},
-    {key: 'description', title: 'Desc.'},
-    {key: 'price', title: 'Price'},
-    {key: 'active', title: 'Active'},
-  ];
-
   userTableColumns: INgxTableColumn[] = [
-    {key: '_id', title: '#'},
-    {key: 'username', title: 'Username'},
-    {key: 'first_name', title: 'F.name'},
-    {key: 'last_name', title: 'L.Name'},
-    {key: 'email', title: 'Email'},
-    {key: 'password', title: 'Password'},
-    {key: 'role', title: 'Role'},
+    // {key: '_id', title: '#'},
+    {key: 'username', title: 'Felhasználónév'},
+    {key: 'first_name', title: 'Keresztnév'},
+    {key: 'last_name', title: 'Vezetéknév'},
+    {key: 'email', title: 'Email cím'},
+    // {key: 'password', title: 'Jelszó'},
+    {key: 'role', title: 'Jogosultsági szint'},
   ];
 
   customerTableColumns: INgxTableColumn[] = [
@@ -47,15 +39,31 @@ export class ConfigService {
       // pipes: [ConfigService.textCutter],
       // pipeArgs: [[15]]
     },
-    {key: 'email', title: 'email'},
-    {key: 'phoneNumber', title: 'Phone number'},
+    {key: 'email', title: 'Email cím'},
+    {key: 'phoneNumber', title: 'Telefonyszám'},
     {key: 'url', title: 'Url'},
     // {key: 'address', title: 'Address'},
     {key: 'address',
       title: 'Cím',
       pipes: [ConfigService.createStrFromObj, ConfigService.textCutter],
-      pipeArgs: [['country', 'zipcode', 'city', 'state', 'streetName', 'streetNumber'], [10]]
+      pipeArgs: [['country', 'zipcode', 'city', 'state', 'streetName', 'streetNumber'], [20]]
     },
+  ];
+
+  productTableColumns: INgxTableColumn[] = [
+    // {key: '_id', title: '#'},
+    {key: 'name', title: 'Név'},
+    {key: 'description', title: 'Leírás'},
+    {key: 'price', title: 'Ár'},
+    {key: 'active', title: 'Aktív'},
+  ];
+
+  categoryTableColumns: INgxTableColumn[] = [
+    // {key: '_id', title: '#'},
+    {key: 'name', title: 'Név'},
+    {key: 'description', title: 'Leírás',
+      pipes: [ConfigService.textCutter],
+      pipeArgs: [[35]]},
   ];
 
   constructor() {}

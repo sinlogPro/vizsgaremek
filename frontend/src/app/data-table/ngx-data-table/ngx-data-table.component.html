@@ -1,43 +1,17 @@
 <div class="filter mb-4">
-  <!-- <select [(ngModel)]="filterKey" class="form-control select">
-    <option value="">All column</option>
-    <option *ngFor="let col of tableColumns" [value]="col.key">{{ col.title }}</option>
-  </select>
-  <div class="col-12 mt-2">
-    <form class="form-inline my-2 my-lg-0 py-2 d-flex justify-content-center">
+  <div class="h6">Keresés az adott oszlopban</div>
+    <div class="col-12 select_container input-group">
+        <select class="form-control" [(ngModel)]="filterKey">
+        <option *ngFor="let col of tableColumns" [value]="col.key">{{ col.title | titlecase}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3 input_container">
       <input (keyup)="searchEvent($event)" class="search-input form-control mr-sm-2" type="text"
-        placeholder="Enter some text...">
-      <button class="btn btn-search my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</div> -->
-
-
-  <div class="col-12 select_container input-group">
-
-    <!-- <select [(ngModel)]="filterKey" class="form-control select"> -->
-    <select class="form-control" [(ngModel)]="filterKey">
-      <option selected value="">All column</option>
-      <option *ngFor="let col of tableColumns" [value]="col.key">{{ col.title | titlecase}}</option>
-    </select>
+          placeholder="Gépelje be a keresendőt...">
+    </div>
   </div>
-
-  <div class="mb-3 input_container">
-    <input (keyup)="searchEvent($event)" class="search-input form-control mr-sm-2" type="text"
-        placeholder="Enter some text...">
-      <button class="btn btn-search my-2 my-sm-0" type="submit">Search</button>
-    <!-- <input [(ngModel)]="phrase" type="text" class="form-control" placeholder="Search in all columns at once..." size="15"> -->
-  </div>
-
-
-
-
-
-
-</div>
-
-{{ filterKey }}
-{{ phrase }}
-
+<div class="h6">Rendezés oszlop szerint</div>
 
 
 <div class="table-responsive">
@@ -48,8 +22,6 @@
           {{ col.title }}
           <i-feather *ngIf="columnKey !== col.key" (click)="onColumnSelect(col.key)" name="minus"></i-feather>
           <i-feather *ngIf="columnKey === col.key" (click)="onColumnSelect(col.key)" [name]="sortingMark"></i-feather>
-          <!-- <i-feather (click)="onColumnSelect(col.key)" [name]="sortingMark"></i-feather> -->
-
         </th>
         <th></th>
       </tr>
@@ -64,19 +36,17 @@
         <td>
           <div class="btn-group">
             <button (click)="raiseEdit(row)" class="btn btn-info">
-              edit
+              <i class="fa fa-pencil" aria-hidden="true"></i> szerkeszt
+            </button>
+            <button (click)="raiseDelete(row)" class="btn btn-danger">
+              <i class="fa fa-trash" aria-hidden="true"></i> töröl
             </button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  {{ list.length }}
 </div>
-
-<!-- {{ list | json }} -->
-<i-feather></i-feather>
-
 
 <nav aria-label="Page navigation example">
   <ul class="pagination mt-4">
@@ -99,6 +69,4 @@
       </button>
     </li>
   </ul>
-  {{ page }}
-  <i-feather name="arrow-left" class="table__arrow"></i-feather>
 </nav>
